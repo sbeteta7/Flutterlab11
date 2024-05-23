@@ -1,0 +1,95 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+class Eventos {
+  final String nombre;
+  final String imagen;
+  final String deporte;
+  final String fecha;
+  final String ubicacion;
+
+  Eventos({
+    required this.nombre,
+    required this.imagen,
+    required this.deporte,
+    required this.fecha,
+    required this.ubicacion,
+  });
+}
+
+List<Eventos> listaEventos = [
+  Eventos(
+    nombre: "Fina de FA CUP",
+    imagen: "https://www.thefa.com/-/media/thefacom-new/images/competitions/emirates-fa-cup/trophy-shots-new/090419-800-fa-cup-pitch-wembley.ashx?as=0&dmc=0&thn=0",
+    deporte: "Fútbol",
+    fecha: "2024-05-25",
+    ubicacion: "Estadio Wembley, Londres - Inglaterra",
+  ),
+  Eventos(
+    nombre: "Copa America Inaguración",
+    imagen: "https://www.telesurtv.net/__export/1623202996690/sites/telesur/img/2021/06/07/manx_garrincha.jpg",
+    deporte: "Fútbol",
+    fecha: "2024-06-10",
+    ubicacion: "Estadio Farm Stadium, Glendale, Arizona",
+  ),
+  Eventos(
+    nombre: "Competencia de natación",
+    imagen: "https://cdn.www.gob.pe/uploads/document/file/4862354/selectivo%20en%20la%20videna.jpg",
+    deporte: "Natación",
+    fecha: "2024-07-02",
+    ubicacion: "Piscina Municipal Sao Paulo",
+  ),
+  Eventos(
+    nombre: "Carrera de atletismo",
+    imagen: "https://files.legado.gob.pe/news/noticia-web-atletismojpg.jpeg",
+    deporte: "Atletismo",
+    fecha: "2024-07-15",
+    ubicacion: "Pista de Atletismo Videna Lima",
+  ),
+];
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Eventos Deportivos'),
+        ),
+        body: ListView.builder(
+          itemCount: listaEventos.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: EdgeInsets.all(16), 
+              child: Card(
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      width: 300,
+                      height: 150,
+                      child: Image.network(
+                        listaEventos[index].imagen,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Text(listaEventos[index].deporte),
+                    Text(listaEventos[index].nombre),
+                    Text(listaEventos[index].fecha),
+                    Text(listaEventos[index].ubicacion),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
